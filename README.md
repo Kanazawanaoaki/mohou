@@ -11,8 +11,8 @@ right: testing sample (`~/.mohou/pipeline_test_RGBD/feedback_simulation.gif`)
 
 Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step. Note that a key concept of this library is a "project", where all data, learned models, result visualizations and logs are stored in a project directory `~/.mohou/{project_name}`. 
 
-<details open>
-<summary> The detailed explanation of each component of `demo.sh` </summary>
+<details>
+<summary> *The detailed explanation of each component of demo.sh* </summary>
 
 - `kuka_reaching.py` creates `MultiEpisodeChunk.pkl` which consists of `n` sample trajectories that reaches to the box in the image (stored in `~/.mohou/{project_name}/). The datachunk consists of sequences of `RGBImage` and `DepthImage` and `AngleVector`. Also, one of the trajectory image in the chunk is visualized as `~/.mohou/{project_name}/sample.gif`.
 
