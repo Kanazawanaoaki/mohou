@@ -60,9 +60,13 @@ Also note that logs by `train_autoencoder.py` and `train_lstm.py` will be stored
 </details>
 
 ## Applying to your own project
-To applyig this software to your own project you must replace 
+Besides parameter/training epoch tuning, to applyig this software to your own project you must replace 
 - `kuka_reaching.py` by your own data creation program using real robot (or simulated model)
 - `kuka_reaching.py --feedback` by real robot execution program
 
+among the `pipeline/demo.sh`
+
+*under construction*
+
 ## Define custom element type
-under construction
+*under construction*
