@@ -6,10 +6,13 @@ This package implements imitation learning trainer and executor using pytorch. C
 
 <img src="https://user-images.githubusercontent.com/38597814/155882282-f40af02b-99aa-41b3-bd43-fe7b7d0c2d96.gif" width="30%" /><img src="https://user-images.githubusercontent.com/38597814/155882252-5739fa16-baf7-4a26-b88f-24e106ea0dd1.gif" width="30%" />
 
-left: teaching sample (~/.mohou/pipeline_test_RGBD/sample.gif)
-right: testing sample (~/.mohou/pipeline_test_RGBD/feedback_simulation.gif)
+left: teaching sample (`~/.mohou/pipeline_test_RGBD/sample.gif`)
+right: testing sample (`~/.mohou/pipeline_test_RGBD/feedback_simulation.gif`)
 
-Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step. Note that a key concept of this library is a "project", where all data, learned models, result visualizations and logs are stored in a project directory `~/.mohou/{project_name}`. Below will explains each component of the `demo.sh`.
+Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step. Note that a key concept of this library is a "project", where all data, learned models, result visualizations and logs are stored in a project directory `~/.mohou/{project_name}`. 
+
+<details open>
+<summary> The detailed explanation of each component of `demo.sh` </summary>
 
 - `kuka_reaching.py` creates `MultiEpisodeChunk.pkl` which consists of `n` sample trajectories that reaches to the box in the image (stored in `~/.mohou/{project_name}/). The datachunk consists of sequences of `RGBImage` and `DepthImage` and `AngleVector`. Also, one of the trajectory image in the chunk is visualized as `~/.mohou/{project_name}/sample.gif`.
 
@@ -27,6 +30,7 @@ Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step. Note that 
 - `kuka_reaching.py --fedback` simualte the visuo-motor reaching task in the simulator using trained autoencoder and lstm. The visualization of the simulation is stored as `~/.mohou/{project_name}/feedback_simulation.gif`.
 
 Also note that logs by `train_autoencoder.py` and `train_lstm.py` will be stored in `~/.mohou/{project_name}/log/`.
+</details>
 
 For example, after running `demo_batch RGBD` in [`pipeline/demo.sh`](/pipeline/demo.sh), we can confirm that following directly sturecture under the corresponding project directory.
 ```
