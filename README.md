@@ -6,6 +6,7 @@ This package implements imitation learning trainer and executor using pytorch. C
 Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step.
 
 <img src="https://user-images.githubusercontent.com/38597814/155882282-f40af02b-99aa-41b3-bd43-fe7b7d0c2d96.gif" width="30%" /><img src="https://user-images.githubusercontent.com/38597814/155882252-5739fa16-baf7-4a26-b88f-24e106ea0dd1.gif" width="30%" />
+
 (left: a sample in the dataset, right: feedback simulation result in new box position)
 
 A key concept of this library is a "project", where all data, learned models, result visualizations and logs are stored in a project directory `~/.mohou/{project_name}`.
