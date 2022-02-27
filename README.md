@@ -2,10 +2,12 @@
 
 This package implements imitation learning trainer and executor using pytorch. Currently the library targets autoencoder-lstm-type behavior cloning.
 
+<img src="https://user-images.githubusercontent.com/38597814/155882282-f40af02b-99aa-41b3-bd43-fe7b7d0c2d96.gif" width="30%" /> <img src="https://user-images.githubusercontent.com/38597814/155882252-5739fa16-baf7-4a26-b88f-24e106ea0dd1.gif" width="30%" /> <img src="https://user-images.githubusercontent.com/38597814/155882256-39a55b42-9973-4a66-94ee-a08df273c1cf.gif" width="30%" />
+
 ### Tutorial demo
 Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step.
 
-A key concept of this library is a "project", where any data, learned models, result visualizations and logs are stored in `~/.mohou/{project_name}/MultiEpisodeChunk.pkl`. Thanks to this project-based data management, we are free from hard-coding file paths.
+A key concept of this library is a "project", where all data, learned models, result visualizations and logs are stored in a project directory `~/.mohou/{project_name}`.
 
 - `kuka_reaching.py` creates `MultiEpisodeChunk.pkl` which consists of `n` sample trajectories that reaches to the box in the image (stored in `~/.mohou/{project_name}/). The datachunk consists of sequences of `RGBImage` and `DepthImage` and `AngleVector`. Also, one of the trajectory image in the chunk is visualized as `~/.mohou/{project_name}/sample.gif`.
 
@@ -17,17 +19,16 @@ A key concept of this library is a "project", where any data, learned models, re
 
 - `visualize_lstm_result.py` visualizes the `n` step prediction given 10 images, which can be used for debugging/tuning or determining the good training epoch of the lstm training. The gif file is stored as `~/.mohou/{project_name}/lstm_result/result.gif`
 
-- `visualize_train_history.py` visualizes the training history (test and validation loss) for all train caches in the project directry. The figures will be stored in `~/.mohou/{project_name}/train_history/`
+- `visualize_train_history.py` visualizes the training history (test and validation loss) for all train caches in the project directory. The figures will be stored in `~/.mohou/{project_name}/train_history/`
 
 - `kuka_reaching.py --fedback` simualte the visuo-motor reaching task in the simulator using trained autoencoder and lstm. The visualization of the simulation is stored as `~/.mohou/{project_name}/feedback_simulation.gif`.
 
 Also note that logs by `train_autoencoder.py` and `train_lstm.py` will be stored in `~/.mohou/{project_name}/log/`.
 
-For example, after running `demo_batch Depth` in [`pipeline/demo.sh`](/pipeline/demo.sh), we can confirm that following directly sturecture under the corresponding project directry.
-
+For example, after running `demo_batch RGBD` in [`pipeline/demo.sh`](/pipeline/demo.sh), we can confirm that following directly sturecture under the corresponding project directory.
 ```
-h-ishida@bc89d7233948:~$ tree ~/.mohou/pipeline_test_Depth/
-/home/h-ishida/.mohou/pipeline_test_Depth/
+h-ishida@ccddbeeedc93:~$ tree ~/.mohou/pipeline_test_RGBD/
+/home/h-ishida/.mohou/pipeline_test_RGBD/
 ├── MultiEpisodeChunk.pkl
 ├── TrainCache-AutoEncoder.pkl
 ├── TrainCache-LSTM.pkl
@@ -37,12 +38,12 @@ h-ishida@bc89d7233948:~$ tree ~/.mohou/pipeline_test_Depth/
 │   ├── result2.png
 │   ├── result3.png
 │   └── result4.png
-├── feedback_simulation.gif
 ├── log
-│   ├── autoencoder_20220227012024.log
-│   ├── latest_autoencoder.log -> /home/h-ishida/.mohou/pipeline_test_Depth/log/autoencoder_20220227012024.log
-│   ├── latest_lstm.log -> /home/h-ishida/.mohou/pipeline_test_Depth/log/lstm_20220227025009.log
-│   └── lstm_20220227025009.log
+│   ├── autoencoder_20220226224448.log
+│   ├── autoencoder_20220226225242.log
+│   ├── latest_autoencoder.log -> /home/h-ishida/.mohou/pipeline_test_RGBD/log/autoencoder_20220226225242.log
+│   ├── latest_lstm.log -> /home/h-ishida/.mohou/pipeline_test_RGBD/log/lstm_20220227022128.log
+│   └── lstm_20220227022128.log
 ├── lstm_result
 │   └── result.gif
 ├── sample.gif
