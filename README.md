@@ -64,7 +64,7 @@ Besides parameter/training epoch tuning, to applyig this software to your own pr
 - `kuka_reaching.py` by your own data creation program using real robot (or simulated model)
 - `kuka_reaching.py --feedback` by real robot execution program
 
-among the `pipeline/demo.sh`
+among the `pipeline/demo.sh`.
 
 *under construction*
 
