@@ -2,14 +2,13 @@
 
 This package implements imitation learning trainer and executor using pytorch. Currently the library targets autoencoder-lstm-type behavior cloning.
 
-<img src="https://user-images.githubusercontent.com/38597814/155882282-f40af02b-99aa-41b3-bd43-fe7b7d0c2d96.gif" width="30%" /> <img src="https://user-images.githubusercontent.com/38597814/155882252-5739fa16-baf7-4a26-b88f-24e106ea0dd1.gif" width="30%" /> <img src="https://user-images.githubusercontent.com/38597814/155882256-39a55b42-9973-4a66-94ee-a08df273c1cf.gif" width="40%" />
-
 ### Tutorial demo
 Running [`pipeline/demo.sh`](/pipeline/demo.sh) is a good first step.
 
 A key concept of this library is a "project", where all data, learned models, result visualizations and logs are stored in a project directory `~/.mohou/{project_name}`.
 
 - `kuka_reaching.py` creates `MultiEpisodeChunk.pkl` which consists of `n` sample trajectories that reaches to the box in the image (stored in `~/.mohou/{project_name}/). The datachunk consists of sequences of `RGBImage` and `DepthImage` and `AngleVector`. Also, one of the trajectory image in the chunk is visualized as `~/.mohou/{project_name}/sample.gif`.
+<img src="https://user-images.githubusercontent.com/38597814/155882282-f40af02b-99aa-41b3-bd43-fe7b7d0c2d96.gif" width="30%" />
 
 - `train_autoencoder.py` trains an autoencoder of `$image_type`. $image_type can either be `RGBImange`, `DepthImage` or `RGBDImage`. The train cache is stored as `~/.mohou/{project_name}/TrainCache-AutoEncoder.pkl`.
 
@@ -18,10 +17,12 @@ A key concept of this library is a "project", where all data, learned models, re
 - `train_lstm.py` trains and lstm that propagate vectors concated by feature vector compressed by the trained autoencoder and `AngleVector`. Note that `train_autoencoder.py` must be run beforehand. The train cache is stored as `~/.mohou/{project_name}/TrainCache-LSTM.pkl`.
 
 - `visualize_lstm_result.py` visualizes the `n` step prediction given 10 images, which can be used for debugging/tuning or determining the good training epoch of the lstm training. The gif file is stored as `~/.mohou/{project_name}/lstm_result/result.gif`
+<img src="https://user-images.githubusercontent.com/38597814/155882256-39a55b42-9973-4a66-94ee-a08df273c1cf.gif" width="30%" />
 
 - `visualize_train_history.py` visualizes the training history (test and validation loss) for all train caches in the project directory. The figures will be stored in `~/.mohou/{project_name}/train_history/`
 
 - `kuka_reaching.py --fedback` simualte the visuo-motor reaching task in the simulator using trained autoencoder and lstm. The visualization of the simulation is stored as `~/.mohou/{project_name}/feedback_simulation.gif`.
+<img src="https://user-images.githubusercontent.com/38597814/155882252-5739fa16-baf7-4a26-b88f-24e106ea0dd1.gif" width="30%" />
 
 Also note that logs by `train_autoencoder.py` and `train_lstm.py` will be stored in `~/.mohou/{project_name}/log/`.
 
