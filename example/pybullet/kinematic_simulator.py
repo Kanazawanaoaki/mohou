@@ -87,7 +87,7 @@ class KinematicBulletSimulator(object):
 
     def take_photo(self, resolution=1024):
         viewMatrix = pb.computeViewMatrix(
-            cameraEyePosition=[1.0, -2.0, 2.5],
+            cameraEyePosition=[-0.3, 0.3, 2.0],
             cameraTargetPosition=[0.3, 0, 0],
             cameraUpVector=[0, 1, 0])
 
